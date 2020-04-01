@@ -1,0 +1,21 @@
+name: Secrets Test
+
+on:
+  push:
+    branches: 
+    - master
+
+env:
+  ENV_SECRET: ${{ secrets.ENV_SECRET }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Echo secrets
+      run: |
+        echo Env secret $ENV_SECRET
+        echo Job secret ${{ secrets.JOB_SECRET }}
